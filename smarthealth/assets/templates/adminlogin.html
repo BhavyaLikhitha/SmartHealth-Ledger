@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+
+{% block contents %}
+
+<style>
+  html, body {
+    height: 100%;
+  }
+
+  .login-form {
+    background-color: #9AC8CD;
+    border: 5px solid green;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 0 auto;
+    width: 400px;
+  }
+
+  .btn-primary:hover { /* Target button on hover */
+    background-color: green; /* Change background color to green */
+  }
+</style>
+
+<div class="jumbotron" style="background-color: #E8F6F3;">
+  <div class="container">
+    <h1 class="display-3" style="font-family: 'Times New Roman', Times, serif; font-weight: bold; font-size: 50px;">
+      Towards Secure And Intelligent Healthcare: Integrating Blockchain And Machine Learning
+    </h1>
+    <p style="font-family: 'Times New Roman', Times, serif; font-size: 20px;">
+      There are a lot of opportunities when blockchain and machine learning come together, especially in the healthcare industry. Access to large and trustworthy data is essential for machine learning to assess data and make conclusions. However, accessibility and privacy issues with centralized data storage are frequently present. The decentralized nature of blockchain, on the other hand, guarantees integrity-preserving, transparent, and safe data sharing.
+    </p>
+
+    <p style="font-family: 'Times New Roman', Times, serif; font-size: 20px;">
+      Blockchain secures patient data interchange amongst stakeholders, while machine learning algorithms improve epidemic detection, individualized therapy, and disease prediction. Healthcare institutions may guarantee data privacy and promote collaborative research by utilizing secure blockchain networks. Although there are still issues with manual data entry and blockchain database scalability, these issues do not overwhelm these technologies' revolutionary potential. With the promise of improved patient outcomes, more streamlined processes, and greater creativity, blockchain technology and machine learning are ushered in a new era in healthcare. Additional study and application are needed to fully realize the promise of these technologies in the healthcare industry and other disciplines. An outline of how integrating these two technologies can benefit the healthcare industry is provided in this paper.
+    </p>
+  </div>
+</div>
+
+<center>
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="login-form">
+        <h2>Admin Login</h2>
+        <br>
+        <form action="{% url 'adminloginaction' %}" class="form-group" method="POST">
+          {% csrf_token %}
+          <div class="form-input">
+            <input name="username" class="form-control" type="text" placeholder="Admin Login Id" aria-label="Search" required style="border: 2px solid rgb(40, 175, 112); border-radius: 5px; padding: 5px;">
+
+          </div>
+          <br>
+          <div class="form-input">
+            <input name="password" class="form-control" type="password" placeholder="Password" aria-label="Search" required style="border: 2px solid rgb(40, 175, 112); border-radius: 5px; padding: 5px;">
+          </div>
+          <div class="text-center mt-4">
+            <button class="btn btn-primary btn-lg" type="submit">Login</button>
+          </div>
+        </form>
+        <center>
+          {% if messages %}
+            {% for message in messages %}
+              <font color="RED">{{ message }}</font>
+            {% endfor %}
+          {% endif %}
+        </center>
+      </div>
+    </div>
+  </div>
+</center>
+
+</div>
+
+{% endblock %}

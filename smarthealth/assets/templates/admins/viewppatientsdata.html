@@ -1,0 +1,85 @@
+{% extends 'adminbase.html' %}
+
+{% block contents %}
+
+
+<style>
+  table {
+    border-collapse: collapse;
+    width: 100%; /* Added to make the table fill the container width */
+  }
+
+  th, td {
+    padding: 8px;
+    text-align: left;
+    border: 1px solid white; /* Changed border color to dark green */
+  }
+
+  /* Set background color for table headers */
+  th {
+    background-color: #50623A; /* Same dark green as reference */
+    color: A3C9AA; /* Text color for headers */
+  }
+
+  /* Target table body rows (excluding headers) */
+  tbody tr {
+    background-color: #75A47F; /* Light green background for table body */
+  }
+
+  /* Target individual table cells (td) on hover */
+  tr:hover td {
+    background-color: #e7a2ad; /* Pink hover color (can be adjusted) */
+  }
+</style>
+
+
+<div class="container">
+  <h2 style="color: #fff; font-family: sans-serif; font-weight: 100;">Admin View Registered Patients</h2>
+  <table class="table table-hover" style="width: 100%; border-collapse: collapse;">
+    <thead>
+      <tr style=" color: #fff;">
+        <th scope="col" style="color: rgb(245, 254, 255)">S.No</th>
+        <th scope="col">Name</th>
+        <th scope="col">Login Name</th>
+        <th scope="col">Mobile</th>
+        <th scope="col">Email</th>
+        <th scope="col">Locality</th>
+        <th scope="col">Address</th>
+        <th scope="col">City</th>
+        <th scope="col">State</th>
+        <th scope="col">Auth Key</th>
+        <th scope="col">Status</th>
+        <th scope="col">Activate</th>
+
+        <br>
+<br>
+      </tr>
+    </thead>
+    <tbody>
+      {% for i in object %}
+      <tr onmouseover="this.style.backgroundColor='#e9ecef'" onmouseout="this.style.backgroundColor=''">
+        <th scope="row" style="color: rgb(245, 254, 255)">{{ i.id }}</th>
+        <td style="color: rgb(245, 254, 255)">{{ i.name }}</td>
+        <td style="color: rgb(245, 254, 255)">{{ i.loginid }}</td>
+        <td style="color: rgb(245, 254, 255)">{{ i.mobile }}</td>
+        <td style="color: rgb(245, 254, 255)">{{ i.email }}</td>
+        <td style="color: rgb(245, 254, 255)">{{ i.locality }}</td>
+        <td style="color: rgb(245, 254, 255)">{{ i.address }}</td>
+        <td style="color: rgb(245, 254, 255)">{{ i.city }}</td>
+        <td style="color: rgb(245, 254, 255)">{{ i.state }}</td>
+        <td style="color: rgb(245, 254, 255)">{{ i.authkey }}</td>
+        <td style="color: rgb(245, 254, 255)">{{ i.status }}</td>
+        {% if i.status == 'waiting' %}
+        <td>
+          <a class="btn btn-link" href="/activatepatients/?pid={{ i.id }}" style="color: #f0ad4e;">Activate</a>
+        </td>
+        {% else %}
+        <td>Activated</td>
+        {% endif %}
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+{% endblock %}

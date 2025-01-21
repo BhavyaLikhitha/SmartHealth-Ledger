@@ -1,0 +1,170 @@
+{% extends 'base.html' %}
+
+{% block contents%}
+<style>
+  /* Style for the table */
+  .styled-table {
+    background-color: rgba(144, 238, 144, 0.5);
+    box-shadow: 0 0 5px rgba(255, 255, 0, 0.5); /* Added box-shadow for table */
+    border-collapse: collapse; /* Optional: Remove space between cells */
+  }
+
+  .styled-table tr td {
+    padding: 5px; /* Added padding for table cells */
+  }
+
+  /* Styling for cute arrows (optional) */
+  .decoration::before {
+    /* Add a cute arrow using a border triangle */
+    border-style: solid;
+    border-width: 0 0 5px 5px; /* Set border for the arrow triangle */
+    border-color: transparent transparent green green; /* Set border color */
+  }
+
+  .decoration::after {
+    /* Add a cute arrow using a border triangle (mirrored) */
+    border-style: solid;
+    border-width: 5px 5px 0 0; /* Set mirrored border for the arrow */
+    border-color: green green transparent transparent; /* Set mirrored border color */
+  }
+
+  /* Styling for headings (h2) */
+  h2 {
+    font-weight: bold; /* Make the text bold */
+    color: orange; /* Set the text color to orange for h2 */
+  }
+
+  /* Styling for note box */
+  .note-box {
+    background-color: #48C9B0;
+    border: 2px solid #A56B7D;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 10px;
+  }
+
+  /* Style for description list */
+  ol {
+    list-style: disc; /* Set list style to disc (bullets) */
+    padding-left: 20px; /* Indent the list items */
+  }
+
+  /* Style for description list items (li) */
+  li {
+    margin-bottom: 5px; /* Add spacing between list items */
+  }
+
+  /* New styles for patient registration section */
+  .container .row .col-md-4 form table {
+    background-color: rgba(144, 238, 144, 0.5); /* Match table background */
+    box-shadow: 0 0 5px rgba(255, 255, 0, 0.5); /* Match table shadow */
+    border-collapse: collapse; /* Match table collapse */
+  }
+
+  .container .row .col-md-4 form table tr td {
+    padding: 5px; /* Match table cell padding */
+  }
+</style>
+
+<div class="jumbotron" style="background-color: #E8F6F3;">
+  <div class="container">
+    <h1 class="display-3" style="font-family: 'Times New Roman', Times, serif; font-weight: bold; font-size: 50px;">Towards Secure And Intelligent Healthcare: Integrating Blockchain And Machine Learning</h1>
+
+    <!-- <h1 class="display-3" >Towards Secure And Intelligent Healthcare: Integrating Blockchain And Machine Learning</h1> -->
+    <p style="font-family: 'Times New Roman', Times, serif; font-size: 20px;">
+      There are a lot of opportunities when blockchain
+      and machine learning come together, especially in the healthcare
+      industry. Access to large and trustworthy data is essential for
+      machine learning to assess data and make conclusions. However,
+      accessibility and privacy issues with centralized data storage are
+      frequently present. The decentralized nature of blockchain, on
+      the other hand, guarantees integrity-preserving, transparent,
+      and safe data sharing.  </p>
+      
+      <p style="font-family: 'Times New Roman', Times, serif; font-size: 20px;">Blockchain secures
+      patient data interchange amongst stakeholders, while machine
+      learning algorithms improve epidemic detection, individualized
+      therapy, and disease prediction. Healthcare institutions may
+      guarantee data privacy and promote collaborative research by
+      utilizing secure blockchain networks. Although there are still
+      issues with manual data entry and blockchain database
+      scalability, these issues do not overwhelm these technologies'
+      revolutionary potential. With the promise of improved patient
+      outcomes, more streamlined processes, and greater creativity,
+      blockchain technology and machine learning are ushered in a
+      new era in healthcare. Additional study and application are
+      needed to fully realize the promise of these technologies in the
+      healthcare industry and other disciplines. An outline of how
+      integrating these two technologies can benefit the healthcare
+      industry is provided in this paper.
+  </p>
+  
+  </div>
+</div>
+<div class="container w-50 mx-auto" style="background-color: rgba(136, 219, 136, 0.5); border-radius: 10px;">
+  <br>
+  <center><h2>Patient Registrations Here</h2></center>
+  
+  <p>
+    <form method="POST" action="{% url 'patientregister' %}">
+      {% csrf_token %}
+      <table style="margin: 0 auto;">
+        <tr>
+          <th>Patient Name</th>
+          <td style="color: #2c992c;">{{ form.name }}</td>
+        </tr>
+        <tr>
+          <th>Login ID</th>
+          <td style="color: #008000;">{{ form.loginid }}</td>
+        </tr>
+        <tr>
+          <th>Password</th>
+          <td style="color: #008000;">{{ form.password }}</td>
+        </tr>
+        <tr>
+          <th>Mobile</th>
+          <td style="color: #008000;">{{ form.mobile }}</td>
+        </tr>
+        <tr>
+          <th>email</th>
+          <td style="color: #008000;">{{ form.email }}</td>
+        </tr>
+        <tr>
+          <th>Locality</th>
+          <td style="color: #008000;">{{ form.locality }}</td>
+        </tr>
+        <tr>
+          <th>Address</th>
+          <td style="color: #008000;">{{ form.address }}</td>
+        </tr>
+        <tr>
+          <th>City</th>
+          <td style="color: #008000;">{{ form.mobile }}</td>
+        </tr>
+        <tr>
+          <th>State</th>
+          <td style="color: #008000;">{{ form.state }}</td>
+        </tr>
+        
+        <tr>
+          <td></td>
+          <td><button class="btn btn-outline-success my-2 my-sm-0" type="submit" style="margin-left: 20%;">Register</button></td>
+        </tr>
+        <br>
+        <center>
+          {% if messages %}
+            {% for message in messages %}
+              <font color="GREEN">{{ message }}</font>
+            {% endfor %}
+          {% endif %}
+        </center>
+      </table>
+    </form>
+  </p>
+</div>
+
+
+
+
+                
+{% endblock %}

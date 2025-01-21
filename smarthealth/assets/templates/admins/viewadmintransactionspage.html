@@ -1,0 +1,102 @@
+{% extends 'adminbase.html' %}
+
+{% block contents %}
+
+<style>
+  table {
+    border-collapse: collapse;
+    width: 100%; /* Added to make the table fill the container width */
+  }
+
+  th, td {
+    padding: 8px;
+    text-align: left;
+    border: 1px solid #50623A; /* Changed border color to dark green */
+  }
+
+  /* Set background color for table headers */
+  th {
+    background-color: #50623A; /* Same dark green as reference */
+    color: A3C9AA; /* Text color for headers */
+  }
+
+  /* Target table body rows (excluding headers) */
+  tbody tr {
+    background-color: #75A47F; /* Light green background for table body */
+  }
+  tr:hover td {
+    background-color: #e7a2ad; /* Pink hover color (can be adjusted) */
+  }
+  /* Target individual table cells (td) on hover */
+
+</style>
+
+<div class="container">
+  <h2>Admin Home Page</h2>
+  <table border="2px" class="table table-hover">  <thead>
+      <tr>
+        <th scope="col" style="color: white">S.No</th>
+        <th scope="col" style="color: white">Doctor ID</th>
+        <th scope="col" style="color: white">Name on Card</th>
+        <th scope="col" style="color: white">CVV</th>
+        <th scope="col" style="color: white">Card Number</th>
+        <th scope="col" style="color: white">Expire Date</th>
+        <th scope="col" style="color: white">Transaction Id</th>
+        <th scope="col" style="color: white">Price </th>
+        <th scope="col" style="color: white">Ledger Ammount</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for i in object %}
+      <tr>
+        <td style="color: white">{{ forloop.counter }}</td>
+        <td style="color: rgb(70, 27, 141)">{{ i.docid }}</td>
+        <td style="color: white">{{ i.nameoncard }}</td>
+        <td style="color: white">{{ i.cvv }}</td>
+        <td style="color: white">{{ i.cardnumber }}</td>
+        <td style="color: white">{{ i.expiredate }}</td>
+        <td style="color: white">{{ i.tranxid }}</td>
+        <td style="color: white">{{ i.price }}</td>
+        <td style="color: white">{{ i.ledgerbalance }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <h3>Total Ledger Balance <font style="color: blueviolet">{{ dph.ledbalance }}</font> </h3><br/>
+  <h3>Last Transaction Details </h3>
+  <table border="2" class="table table-hover last-transaction-details"> <thead>
+      <tr>
+        <th scope="col" style="color: white">S.No</th>
+        <th scope="col" style="color: white">Doctor ID</th>
+        <th scope="col" style="color: white">Name on Card</th>
+        <th scope="col" style="color: white">CVV</th>
+        <th scope="col" style="color: white">Card Number</th>
+        <th scope="col" style="color: white">Expire Date</th>
+        <th scope="col" style="color: white">Transaction Id</th>
+        <th scope="col" style="color: white">Price </th>
+        <th scope="col" style="color: white">Ledger Ammount</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td style="color: white">1</td>
+        <td style="color: darkolivegreen">{{ dpdet.docid }}</td>
+        <td style="color: white">{{ dpdet.nameoncard }}</td>
+        <td style="color: white">{{ dpdet.cvv }}</td>
+        <td style="color: white">{{ dpdet.cardnumber }}</td>
+        <td style="color: white">{{ dpdet.expiredate }}</td>
+        <td style="color: white">{{ dpdet.tranxid }}</td>
+        <td style="color: white">{{ dpdet.price }}</td>
+        <td style="color: white">{{ dpdet.ledgerbalance }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="row">
+    <div class="col-md-4">
+      <p>
+        </p>
+    </div>
+  </div>
+{% endblock %}
+

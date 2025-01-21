@@ -1,0 +1,96 @@
+{% extends 'trnxbase.html' %}
+
+{% block contents %}
+
+<style>
+  table {
+    border-collapse: collapse;
+    width: 100%; /* Makes the table fill the container width */
+  }
+
+  th, td {
+    padding: 8px;
+    text-align: left;
+    border: 1px solid white; /* Same dark green border as reference */
+  }
+
+  /* Set background color for table headers */
+  th {
+    background-color: #50623A; /* Same dark green as reference */
+    color: A3C9AA; /* Text color for headers */
+  }
+
+  /* Target table body rows (excluding headers) */
+  tbody tr {
+    background-color: #75A47F; /* Light green background for table body */
+  }
+
+  /* Target individual table cells (td) on hover */
+  tr.hoverRow:hover td {
+    background-color: #CAA6A6; /* Same light hover color as reference */
+  }
+
+  /* Optional: Remove hover highlight for table headers (th) */
+  tr.hoverRow:hover th {
+    background-color: #50623A; /* Maintain original background color */
+  }
+  textarea {
+    font-size: 13px;
+    color: rgb(174, 112, 216);
+    background-color:#d9edbf ;
+  }
+</style>
+
+
+<div class="container">
+  <h2>View All Patient Purchased Priscriptions</h2>
+
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col" style="color: white">S.No</th>
+        <th scope="col" style="color: white">Patient ID</th>
+        <th scope="col" style="color: white">Patient Name</th>
+        <th scope="col" style="color: white">Email</th>
+        <th scope="col" style="color: white">Mobile</th>
+        <th scope="col" style="color: white">city</th>
+        <th scope="col" style="color: white">diseasname</th>
+        <th scope="col" style="color: white">descriptions</th>
+        <th scope="col" style="color: white">price</th>
+        <th scope="col" style="color: white">prescription1</th>
+        <th scope="col" style="color: white">prescription2</th>
+        <th scope="col" style="color: white">prescription3</th>
+        <th scope="col" style="color: white">respdate</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for i in object %}
+      <tr class="hoverRow">
+        <td style="color: white">{{ forloop.counter }}</td>
+        <td style="color: darkolivegreen">{{ i.patientid }}</td>
+        <td style="color: white">{{ i.patinetname }}</td>
+        <td style="color: white">{{ i.email }}</td>
+        <td style="color: white">{{ i.mobile }}</td>
+        <td style="color: white">{{ i.city }}</td>
+        <td style="color: white">{{ i.diseasname }}</td>
+        <td style="color: white; white-space: nowrap;">
+          <textarea>{{ i.descriptions }}</textarea>
+        </td>
+        <td style="color: white">{{ i.price }}</td>
+        <td style="color: white; white-space: nowrap;">{{ i.prescription1 }}</td>
+        <td style="color: white; white-space: nowrap;">{{ i.prescription2 }}</td>
+        <td style="color: white; white-space: nowrap;">{{ i.prescription3 }}</td>
+        <td style="color: white">{{ i.respdate }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <div class="row">
+    <div class="col-md-4">
+      <p></p>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

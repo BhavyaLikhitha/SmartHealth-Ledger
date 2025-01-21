@@ -1,0 +1,52 @@
+{% extends 'patientbase.html' %}
+
+{% block contents %}
+<style>
+.message-large {
+  color: red;
+  font-size: 30px;  }
+
+  .text-black {
+  color: black;
+}
+</style>
+  
+  <div class="container">
+    <!-- Example row of columns -->
+    <h1>Hi</h1>
+    <center><h2>Patient  Home Page</h2></center>
+    <br>
+    
+    <h3>Logged user is <span style="color: #A56B7D;">{{ request.session.loggeduser }}</span></h3>
+    <br>
+     Transaction ID : {{object.tranxid}} <br/>
+     Ledger Balance : {{object.ledbala}}
+   <br>
+   <br>
+   <br>
+
+     <center>
+      {% if messages %}
+        {% for message in messages %}
+          <font class="message-large"> {{ message }}</font>
+        {% endfor %}
+      {% endif %}
+    </center>
+    
+              
+
+   
+    <div class="row">
+      <div class="col-md-4">
+        
+        <p>
+          
+           
+        </p>
+        
+      </div>
+     <br>
+    
+      
+    </div>
+{% endblock %}

@@ -1,0 +1,102 @@
+{% extends 'adminbase.html' %}
+
+{% block contents %}
+
+
+<div class="container">
+  <h2>Admin View Registered Doctors</h2>
+
+  <style>
+  table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+
+  th, td {
+    padding: 8px;
+    text-align: left;
+    border: 1px solid #ddd;
+  }
+
+  /* Set background color for table headers and first column (S.No) */
+  th,
+  td:first-child {
+    background-color: #50623A; /* Your desired color */
+    color: white; /* Adjust text color for better contrast */
+  }
+
+  /* Set background color and text color for table body (tbody) */
+  tbody {
+    background-color: #789461;
+    color: white; /* New rule to set text color to white */
+  }
+
+  /* Target individual table cells (td) on hover */
+  tr.hoverRow:hover td {
+    background-color: #d9edbf; /* Hover color for individual table content */
+  }
+
+  /* Optional: Remove hover highlight for table headers (th) */
+  tr.hoverRow:hover th {
+    background-color: #50623A; /* Maintain original background color */
+  }
+  </style>
+
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col" style="color: rgb(245, 254, 255)">S.No</th>
+        <th scope="col" style="color: rgb(245, 254, 255)">Name</th>
+        <th scope="col" style="color: rgb(245, 254, 255)">Login Name</th>
+        <th scope="col" style="color: rgb(245, 254, 255)">Mobile</th>
+        <th scope="col" style="color: rgb(245, 254, 255)">Email</th>
+        <th scope="col" style="color: rgb(245, 254, 255)">Locality</th>
+        <th scope="col" style="color: rgb(245, 254, 255)">Address</th>
+        <th scope="col" style="color: rgb(245, 254, 255)">City</th>
+        <th scope="col" style="color: rgb(245, 254, 255)">State</th>
+        <th scope="col" style="color: rgb(245, 254, 255)">Auth Key</th>
+        <th scope="col" style="color: blueviolet">Status</th>
+        <th scope="col" style="color: burlywood">Activate</th>
+<br>
+<br>
+    </thead>
+    <tbody>
+      {% for i in object %}
+      <tr class="hoverRow">
+        <th scope="row" style="color: rgb(147, 192, 166)">{{ i.id }}</th>
+        <td><span style="position: relative;">{{ i.doctorname }}</span></td>
+        <td><span style="position: relative;">{{ i.loginid }}</span></td>
+        <td><span style="position: relative;">{{ i.mobile }}</span></td>
+        <td><span style="position: relative;">{{ i.emailid }}</span></td>
+        <td><span style="position: relative;">{{ i.locality }}</span></td>
+        <td><span style="position: relative;">{{ i.address }}</span></td>
+        <td><span style="position: relative;">{{ i.city }}</span></td>
+        <td><span style="position: relative;">{{ i.state }}</span></td>
+        <td><span style="position: relative;">{{ i.authkey }}</span></td>
+        <td><span style="position: relative;">{{ i.status }}</span></td>
+
+        {% if i.status == 'waiting' %}
+        <td>
+          <a class="btn btn-link" href="/activatedoctors/?pid={{ i.id }}">Activate</a>
+        </td>
+        {% else %}
+        <td>Activated</td>
+        {% endif %}
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <div class="row">
+    <div class="col-md-4">
+
+      <p>
+
+      </p>
+
+    </div>
+
+  </div>
+</div>
+
+{% endblock %}

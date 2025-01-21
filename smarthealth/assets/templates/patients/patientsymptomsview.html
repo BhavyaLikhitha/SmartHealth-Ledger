@@ -1,0 +1,105 @@
+{% extends 'patientbase.html' %}
+
+{% block contents %}
+
+<style>
+  table {
+    border-collapse: collapse;
+  }
+
+  table, th, td {
+    border: 1px solid white; /* Dark green border from reference */
+  }
+
+  th {
+    background-color: #50623A; /* Same dark green as reference */
+    color: white; /* Text color for headers */
+  }
+
+  /* Target table body rows (excluding headers) */
+  tbody tr {
+    background-color: #75A47F; /* Light green background for table body */
+  }
+
+  th, td {
+    color: #A3C9AA; /* Light green text color from reference */
+    padding: 8px;
+    text-align: left;
+  }
+
+  .btn-link {
+    color: #A3C9AA; /* Light green color for link */
+  }
+
+  textarea {
+    color: rgb(174, 112, 216);
+    background-color: #d9edbf; /* Light green from reference */
+  }
+
+  tr:hover td {
+    background-color: #e7a2ad; /* Pink hover color (can be adjusted) */
+  }
+</style>
+
+
+<div class="container">
+  <br>
+  <br>
+  <!-- <h1>Hello</h1> -->
+  <center> <h2>Past Patient Records</h2></center>
+ 
+  <h3>Logged user is <span style="color: #A56B7D;">{{ request.session.loggeduser }}</span></h3>
+  <br>
+  <table border="2px">
+    <thead>
+      <tr>
+        <th scope="col" style="color: white">S.No</th>
+        <th scope="col" style="color: white">Patient ID</th>
+        <th scope="col" style="color: white">Patient Name</th>
+        <th scope="col" style="color: white">Email</th>
+        <th scope="col" style="color: white">Sysmptoms</th>
+        <th scope="col" style="color: white">Disease</th>
+        <th scope="col" style="color: white">Description</th>
+        <th scope="col" style="color: white">Timestamp</th>
+        <th scope="col" style="color: white">DoctorName</th>
+        <th scope="col" style="color: white">Check</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for i in object %}
+      <tr>
+        <td style="color: white">{{ forloop.counter }}</td>
+        <td style="color: white">{{ i.patintid }}</td>
+        <td style="color: white">{{ i.patinetname }}</td>
+        <td style="color: white">{{ i.email }}</td>
+        <td style="color: white">{{ i.patinetallsymptoms }}</td>
+        <td style="color: white">{{ i.diseasname }}</td>
+        <td style="color: white; white-space: nowrap;">
+          <textarea>{{ i.descriptions }}</textarea>
+        </td>
+        <td style="color: white">{{ i.createdon }}</td>
+        <td style="color: white">{{ i.docname }}</td>
+
+      
+
+      {% if i.status == 'given' %}
+  <td>
+    <a class="btn-link text-danger" href="/checkandpay/?pid={{ i.id }}">Check</a>
+  </td>
+{% else %}
+<td style="color: yellow;">Not Assigned</td>
+{% endif %}
+</tr>
+{% endfor %}
+
+    </tbody>
+  </table>
+
+  <div class="row">
+    <div class="col-md-4">
+      <p></p>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

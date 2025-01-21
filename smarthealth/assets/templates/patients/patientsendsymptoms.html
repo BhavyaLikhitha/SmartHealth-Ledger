@@ -1,0 +1,101 @@
+{% extends 'patientbase.html' %}
+
+{% block contents %}
+
+
+<style>
+  /* Table Styles */
+  table {
+    border-collapse: collapse;
+    width: 100%; /* Added to make the table fill the container width */
+  }
+
+  th, td {
+    padding: 8px;
+    text-align: left;
+    border: 1px solid #ddd;
+    background-color: #75A47F;
+  }
+
+  /* Set background color for table headers */
+  th {
+    background-color: #50623A; /* Same dark green as reference */
+    color: white; /* Text color for headers */
+  }
+
+  /* Optional: Remove hover highlight for table headers (th) */
+  tr.hoverRow:hover th {
+    background-color: #50623A; /* Maintain original background color */
+  }
+
+  /* Target individual table cells (td) on hover */
+  tr.hoverRow:hover td {
+    background-color: #CAA6A6; /* Same light hover color as reference */
+  }
+
+  /* Form Styles */
+  form {
+    margin-top: 2rem;
+  }
+
+  h4 {
+    color: #DC143C; /* Crimson color from reference */
+  }
+
+  textarea {
+    font-size: 13px;
+    color: rgb(174, 112, 216);
+    background-color: #d9edbf; /* Light green from reference */
+  }
+
+  .btn-outline-success {
+    border-color: #28a745; /* Green color from reference, adjust for outline */
+    color: #28a745;
+  }
+
+  /* Message Styles */
+  .message {
+    color: #007bff; /* Blue color from reference */
+  }
+</style>
+
+<div class="container">
+  <br>
+  <br>
+  <center><h2>Patient Disease Page</h2></center>
+  <br>
+  <h3>Logged user is <span style="color: #A56B7D;">{{ request.session.loggeduser }}</span></h3>
+  <form action="{% url 'patientsymtomsanalysis' %}" method="POST">
+    {% csrf_token %}
+    <u><h4 style="color: crimson">Enter How you feeling Symptoms seperated with commos(,)</h4></u>
+    <br/>
+    <textarea name="symptoms" rows="5" cols="70" required></textarea>
+    <input type="hidden" name="id" value="{{request.session.userid}}">
+    <br/>
+    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Send</button>
+    <center>
+      {% if messages %}
+        <ul class="message">
+          {% for message in messages %}
+            <li>{{ message }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    </center>
+  </form>
+  <div class="row">
+
+    <p>
+      Note:
+      <ul>
+        <li>The Dataset is created for sample collections</li>
+        <li>Give your symptoms in the above textarea each symptom separated by commas</li>
+        Ex: Tingling, impulsivity, Itching, nausea ......... etc
+        <li>Our analysis will show you the results asap</li>
+      </ul>
+    </p>
+
+  </div>
+</div>
+
+{% endblock %}
